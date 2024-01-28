@@ -7,6 +7,7 @@ use App\Models\Category;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardEventController extends Controller
 {
@@ -90,6 +91,7 @@ class DashboardEventController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'category_id' => 'required',
+            'image' => 'image|file|max:1024',
             'body' => 'required'
         ];
 
@@ -99,6 +101,16 @@ class DashboardEventController extends Controller
         }
 
         $validatedData = $request->validate($rules);
+
+        if($request->file('image'))
+        {
+            if($request->oldImage)
+            {
+                Storage::delete($request->oldImage);
+            }
+
+            $validatedData['image'] = $request->file('image')->store('event-images');
+        }
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100);
@@ -113,6 +125,10 @@ class DashboardEventController extends Controller
      */
     public function destroy(Event $event)
     {
+        if($event->image)
+        {
+            Storage::delete($event->image);
+        }
         Event::destroy($event->id);
         return redirect('/dashboard/events')->with('success', 'Event has been deleted!');
     }

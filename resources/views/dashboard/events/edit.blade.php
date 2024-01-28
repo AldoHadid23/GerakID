@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" action="/dashboard/events/{{ $event->slug }}" class="mb-5">
+        <form method="POST" action="/dashboard/events/{{ $event->slug }}" class="mb-5" enctype="multipart/form-data">
             @csrf
             @method('put')
 
@@ -24,7 +24,7 @@
             {{-- Form Slug --}}
             <div class="mb-3">
               <label for="slug" class="form-label">Slug (Otomatis sesuai judul)</label>
-              <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required value="{{ old('slug'), $event->slug }}">
+              <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required readonly value="{{ old('slug'), $event->slug }}">
               @error('slug')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -44,6 +44,26 @@
                   @endif
                 @endforeach
               </select>
+            </div>
+
+            {{-- Form Gambar --}}
+            <div class="mb-3">
+              <label for="image" class="form-label @error('image') is-invalid @enderror">Event Image</label>
+              <input type="hidden" name="oldImage" value="{{ $event->image }}">
+
+              @if ($event->image)
+                <img src="{{ asset('storage/' . $event->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+              @else
+                <img class="img-preview img-fluid mb-3 col-sm-5">
+              @endif
+
+              
+              <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
+              @error('image')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+              @enderror
             </div>
 
             {{-- Form Body --}}
@@ -75,5 +95,21 @@
         {
             e.preventDefault();
         });
+
+        function previewImage()
+        {
+          const image = document.querySelector('#image');
+          const imgPreview = document.querySelector('.img-preview');
+
+          imgPreview.style.display = 'block';
+
+          const oFReader = new FileReader();
+          oFReader.readAsDataURL(image.files[0]);
+
+          oFReader.onload = function(oFREvent)
+          {
+            imgPreview.src = oFREvent.target.result;
+          }
+        }
     </script>
 @endsection
