@@ -38,14 +38,18 @@ class DashboardEventController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->file('image')->store('event-images');
-
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:events',
             'category_id' => 'required',
+            'image' => 'image|file|max:1024',
             'body' => 'required'
         ]);
+
+        if($request->file('image'))
+        {
+            $validatedData['image'] = $request->file('image')->store('event-images');
+        }
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100);

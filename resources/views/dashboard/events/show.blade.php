@@ -21,7 +21,15 @@
                 </button>
             </form>
 
-            <img src="https://source.unsplash.com/1200x400?{{ $event->category->name }}" class="card-img-top" alt="{{ $event->category->name }}" class="img-fluid">
+            @if ($event->image)
+                <div style="max-height: 350px; overflow:hidden">
+                    <img src="{{ asset('storage/' . $event->image) }}" class="card-img-top" alt="{{ $event->category->name }}" class="img-fluid">
+                </div>
+            @else
+                <img src="https://source.unsplash.com/1200x400?{{ $event->category->name }}" class="card-img-top" alt="{{ $event->category->name }}" class="img-fluid">
+            @endif
+
+
 
             <article class="my-3 fs-5">
                 {!! $event->body !!}

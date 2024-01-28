@@ -47,8 +47,13 @@
 
             {{-- Form Gambar --}}
             <div class="mb-3">
-              <label for="image" class="form-label">Event Image</label>
+              <label for="image" class="form-label @error('image') is-invalid @enderror">Event Image</label>
               <input class="form-control" type="file" id="image" name="image">
+              @error('image')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
             </div>
 
             {{-- Form Body --}}
