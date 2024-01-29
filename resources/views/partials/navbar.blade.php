@@ -27,7 +27,10 @@
             <a class="nav-link dropdown-toggle active" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Welcome Back, {{ auth()->user()->name }}
             </a>
+
             <ul class="dropdown-menu">
+
+              {{-- User --}}
               <li>
                 <a class="dropdown-item" href="/dashboard">
                   <i class="bi bi-layout-text-sidebar-reverse"></i> Dashboard
@@ -39,6 +42,21 @@
                 </a>
               </li>
               <li><hr class="dropdown-divider"></li>
+
+              {{-- Admin --}}
+              @can('admin') 
+                <h6 class="text-center">
+                  <span>Admin</span>
+                </h6>
+                <li>
+                  <a class="dropdown-item" href="/dashboard/categories">
+                    <i class="bi bi-card-list"></i> Categories
+                  </a>
+                </li>
+                <hr class="my-1">
+              @endcan
+
+              {{-- Logout --}}
               <li>
                 <form action="/logout" method="POST">
                   @csrf

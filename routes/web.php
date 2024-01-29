@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardEventController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Category;
@@ -89,3 +90,5 @@ Route::get('/dashboard', function()
 
 Route::get('/dashboard/events/checkSlug', [DashboardEventController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/events', DashboardEventController::class)->middleware('auth');
+
+Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
