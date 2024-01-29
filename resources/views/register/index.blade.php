@@ -49,7 +49,7 @@
               </div>
               <button class="btn btn-primary w-100 py-2 mt-3" type="submit">Register</button>
             </form>
-            <small class="d-block text-center mt-3">Sudah punya akun? Langsung <a href="/register" class="text-decoration-none">Login</a> aja :3</small>
+            <small class="d-block text-center mt-3">Sudah punya akun? Langsung <a href="/login" class="text-decoration-none">Login</a> aja :3</small>
         </main>
     </div>
 </div>

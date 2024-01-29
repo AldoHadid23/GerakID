@@ -19,7 +19,7 @@
       @endif
 
         <main class="form-signin w-100 m-auto">
-          <img class="mb-4" src="img\pdip.png" alt="" width="150" height="170">
+          <img class="mb-4 d-block mx-auto" src="img\pdip.png" alt="" width="150" height="170">
           <h1 class="h3 mb-3 fw-normal text-center">Please Login</h1>
             <form action="/login" method="post">
               @csrf
