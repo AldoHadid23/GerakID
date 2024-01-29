@@ -13,7 +13,7 @@
             <p class="mb-1px">Penyelenggara : <a href="/events?author={{ $events->author->username }}" class="text-decoration-none">{{ $events->author->name }}</a></p>
 
             {{-- Category --}}
-            <p>Kategori: <a href="/events?author={{ $events->category->slug }}" class="text-decoration-none">{{ $events->category->name }}</a></p>
+            <p>Kategori: <a href="/events?category={{ $events->category->slug }}" class="text-decoration-none">{{ $events->category->name }}</a></p>
 
             {{-- Image --}}
             @if ($events->image)
