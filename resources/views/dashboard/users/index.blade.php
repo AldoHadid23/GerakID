@@ -42,22 +42,26 @@
                     <td>{{ $user->username }}</td>
                     <td>{{ $user->email }}</td>
                     <td class="text-center">
-                        @if ($user->is_admin == 1)
-                            Yes
-                        @else
-                            No
-                        @endif
+                        <form action="/dashboard/users/{{ $user->id }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('put')
+                            @if ($user->is_admin == 1)
+                                Yes
+                                <button type="submit" class="badge bg-success border-0" onclick="return confirm('Are You Sure?')">
+                                    <i class="bi bi-repeat"></i>
+                                </button>
+                            @else
+                                No
+                                <button type="submit" class="badge bg-danger border-0" onclick="return confirm('Are You Sure?')">
+                                    <i class="bi bi-repeat"></i>
+                                </button>
+                            @endif
+                        </form>
+
                     </td>
                     <td>
                         <a href="/dashboard/users/{{ $user->id }}" class="badge bg-info dark-text"><i class="bi bi-eye"></i></a>
                         <a href="/dashboard/users/{{ $user->id }}/edit" class="badge bg-warning dark-text"><i class="bi bi-pencil"></i></a>
-                        <form action="/dashboard/users/{{ $user->id }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('put')
-                            <button type="submit" class="badge bg-success border-0" onclick="return confirm('Are You Sure?')">
-                                <i class="bi bi-person"></i>
-                            </button>
-                        </form>
                         <form action="/dashboard/users/{{ $user->slug }}" method="POST" class="d-inline">
                             @csrf
                             @method('delete')
