@@ -55,7 +55,13 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        // Toggle status admin
+        $user->is_admin = !$user->is_admin;
+
+        // Simpan perubahan
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', 'Status admin pengguna berhasil diubah.');
     }
 
     /**
