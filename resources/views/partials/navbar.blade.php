@@ -38,7 +38,7 @@
               </li>
               <li>
                 <a class="dropdown-item" href="/dashboard/events">
-                  <i class="bi bi-file-post"></i> My Post
+                  <i class="bi bi-file-post"></i> My Event
                 </a>
               </li>
               <li><hr class="dropdown-divider"></li>
@@ -48,6 +48,11 @@
                 <h6 class="text-center">
                   <span>Admin</span>
                 </h6>
+                <li>
+                  <a class="dropdown-item" href="/dashboard/users">
+                    <i class="bi bi-card-list"></i> Users
+                  </a>
+                </li>
                 <li>
                   <a class="dropdown-item" href="/dashboard/categories">
                     <i class="bi bi-card-list"></i> Categories
@@ -73,8 +78,6 @@
           </li>
           @endauth
         </ul>
-
-
 
       </div>
     </div>

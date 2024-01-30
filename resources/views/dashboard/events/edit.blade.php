@@ -57,7 +57,6 @@
                 <img class="img-preview img-fluid mb-3 col-sm-5">
               @endif
 
-              
               <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
               @error('image')
                 <div class="invalid-feedback">
