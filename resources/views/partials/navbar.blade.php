@@ -50,7 +50,7 @@
                 </h6>
                 <li>
                   <a class="dropdown-item" href="/dashboard/users">
-                    <i class="bi bi-card-list"></i> Users
+                    <i class="bi bi-person"></i> Users
                   </a>
                 </li>
                 <li>
