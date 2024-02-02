@@ -20,6 +20,15 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('excerpt');
             $table->text('body');
+            $table->double('price')->nullable();
+            $table->string('type');
+            $table->integer('quota');
+            $table->dateTime('registration_start');
+            $table->dateTime('registration_end');
+            $table->dateTime('event_start');
+            $table->dateTime('event_end');
+            $table->string('place');
+            $table->string('no_telp');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
